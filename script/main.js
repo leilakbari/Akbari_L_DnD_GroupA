@@ -23,9 +23,33 @@ function changeBGImage() {
 	// inside the braces - run that little bit of code. In this case it's just pulling the ID of the
 	// button we clicked on and putting it at the end of the image name (0, 1, 2, 3)
 	// and updating the background-image style of the puzzle board element.
-
 	// bug fix #2 should go here. it's at most 3 lines of JS code.
 	puzzleBoard.style.backgroundImage = `url(images/backGround${this.id}.jpg)`;
+
+
+	puzzlePieces.item(0).src = `images/topLeft${this.id}.jpg`;
+	puzzlePieces.item(1).src   = `images/topRight${this.id}.jpg`;
+	puzzlePieces.item(2).src = `images/bottomLeft${this.id}.jpg`;
+	puzzlePieces.item(3).src = `images/bottomRight${this.id}.jpg`;
+
+	
+
+	for (let i = 0; i < dropZones.length; i++) {
+		let children = dropZones[i].childNodes;
+		if (children.length > 0) {
+		
+			let piece = dropZones[i].removeChild(children.item(0));
+			//	piece.parentNode = puzzlePieces;
+		}
+	}
+
+
+}
+
+
+function handleRefresh() {
+	console.log('refresh', this);
+	this.parentElement = puzzlePieces;
 }
 
 function handleStartDrag() { 
@@ -45,11 +69,20 @@ function handleDragOver(e) {
 function handleDrop(e) { 
 	e.preventDefault();
 	console.log('dropped something on me');
+	
 	// bug fix #1 should go here, and it's at most 3 lines of JS code
 
 	// this line is going to move the dragged piece from the left side of the board
 	// into whatever drop zone we choose. appendChild means "add element to the container"
-	this.appendChild(draggedPiece);
+	//let lastchild = this.removeChild(draggedPiece);
+	
+	//this.appendChild(draggedPiece);
+	if (this.childElementCount==0 ) {
+		this.appendChild(draggedPiece);
+	} else {
+		return;
+    }
+	
 }
 // step 2
 // event handling always goes at the bottom => 
@@ -64,6 +97,7 @@ theButtons.forEach(button => button.addEventListener("click", changeBGImage));
 
 // add the drag event handling to the puzzle pieces
 puzzlePieces.forEach(piece => piece.addEventListener("dragstart", handleStartDrag));
+
 
 // add the dragover AND the drop event handling to the drop zones
 dropZones.forEach(zone => zone.addEventListener("dragover", handleDragOver));
