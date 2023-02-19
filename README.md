@@ -1,6 +1,6 @@
 # Crushing programming bugs project
 
-TODO: In the class we build (the Puzzle Drag and Drop) page but it had some bugs that I wanted to fix them. In the main project, we had 4 puzzle pieces that we could solve and complete the puzzle by dragging and dropping them on the field next to it. 
+TODO: In the class, we build (the Puzzle Drag and Drop) page but it had some bugs that I wanted to fix them. In the main project, we had 4 puzzle pieces we could solve and complete by dragging and dropping them on the field next to it. 
 But there were two problems. First, instead of each one being placed in one section, if we drop them on top of each other, they will be placed on top of each other and cover the picture below.
 Second, by clicking on the pictures of other puzzles, the pictures did not change and the puzzle pieces did not return to their original place. In this project, I tried to solve these two problems.
 
